@@ -18,6 +18,7 @@ public class Approximation {
         this.matrix = getMatrix(points);
     }
 
+
     private double[][] matrix;
     List<Point> points;
 
