@@ -5,19 +5,25 @@ import java.util.List;
 
 public class Approximation {
 
+    //private double a;
+    //private double b;
+
+    public Approximation(List<Point> points) {
+        this.points = points;
+        this.matrix = getMatrix(points);
+    }
+
+    public void setPoints(List<Point> points) {
+        this.points = points;
+        this.matrix = getMatrix(points);
+    }
+
     private double[][] matrix;
+    List<Point> points;
+
 
     private double f(double x){
         return Math.sin(x);
-    }
-
-    public List<Point> getNPoints(int n){
-        double step = 2*Math.PI / n;
-        List<Point> points = new ArrayList<>();
-        for (double x = 0; x < 2*Math.PI; x+=step){
-            points.add(new Point(x, f(x)));
-        }
-        return  points;
     }
 
     private double squareSinSum(List<Point> points){
@@ -65,4 +71,24 @@ public class Approximation {
         return matrix;
     }
 
+    public double getA(){
+        double[][] matrix_local = this.matrix;
+        double b = getB();
+        double a = (matrix_local[0][2]-matrix_local[0][1] * b) / matrix_local[0][0];
+        return a;
+    }
+    public double getB() {
+        double[][] matrix_local = this.matrix;
+        double k = matrix_local[0][0];
+        double b = 0;
+        for (int i = 0; i < 3; i++){
+            matrix_local[0][i] /= k;
+        }
+        k = matrix_local[1][0];
+        for (int i = 0; i < 3; i++){
+            matrix_local[1][i] -= matrix_local[0][i] * k;
+        }
+        b = matrix_local[1][2] / matrix_local[1][1];
+        return b;
+    }
 }
