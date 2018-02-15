@@ -20,7 +20,7 @@ public class DataGenerator {
     public ArrayList<Point> getWrongPoints(){
 
         ArrayList<Point> points = getNPoints(5);
-        points.add(new Point(Math.PI, 5));
+        points.add(new Point(Math.PI, 3));
         //points.add(new Point(Math.PI - 1, 10));
         return  points;
     }
