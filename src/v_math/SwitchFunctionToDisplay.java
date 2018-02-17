@@ -28,7 +28,7 @@ public class SwitchFunctionToDisplay {
         this.plot = plot;
         group = new ButtonGroup();
         buttonPanel = new JPanel();
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(50,30,50,10));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(50,30,50,0));
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.PAGE_AXIS));
         radioSimpleAppr = new JRadioButton("Simple approximation", true);
         group.add(radioSimpleAppr);

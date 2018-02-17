@@ -2,6 +2,7 @@ package v_math;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class DataGenerator {
 
@@ -22,6 +23,14 @@ public class DataGenerator {
         ArrayList<Point> points = getNPoints(5);
         //points.add(new Point(Math.PI, 3));
         points.add(new Point(Math.PI - 1, 2));
+        return  points;
+    }
+
+    public ArrayList<Point> getManyWrongPoints(){
+        ArrayList<Point> points = getNPoints(5);
+        points.add(new Point(Math.PI, 1.5));
+        points.add(new Point(Math.PI+3, 1.4));
+        points.add(new Point(Math.PI + 0.5, 0.2));
         return  points;
     }
 

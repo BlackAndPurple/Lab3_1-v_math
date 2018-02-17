@@ -14,11 +14,14 @@ public class DrawPlot extends JPanel {
     private Controller controller;
     private DataGenerator data;
     private Approximation approximation;
+    private Table table;
 
-    public DrawPlot(Controller controller) {
+    public DrawPlot(Controller controller, Table table) {
         this.controller = controller;
         data = new DataGenerator();
         points = data.getNPoints(4);
+        this.table = table;
+        table.setTableData(points);
     }
 
     public void setCoeff(double a, double b){
@@ -36,6 +39,7 @@ public class DrawPlot extends JPanel {
                 case FOUR:
                     points = data.getNPoints(4);
                     rightPoints = points;
+
                     break;
                 case EIGHT:
                     points = data.getNPoints(8);
@@ -46,10 +50,13 @@ public class DrawPlot extends JPanel {
                     rightPoints = data.getRightPoints(points);
                     break;
                 case MANY:
-                    points = data.getNPoints(15);
-                    rightPoints = points;
+                    //points = data.getNPoints(15);
+                    points = data.getManyWrongPoints();
+                    rightPoints = data.getRightPoints(points);
                     break;
             }
+            table.clearTable();
+            table.setTableData(points);
         }
         protected void paintComponent(Graphics g)
         {
@@ -79,13 +86,13 @@ public class DrawPlot extends JPanel {
                 case REMOVE_POINT:
                     approximation = new Approximation(rightPoints);
                     setCoeff(approximation.getA(), approximation.getB());
-                    drawFunction(g, Color.blue, true);
+                    drawFunction(g, Color.blue, false);
                     drawFuncLabel(g, 0);
                     break;
                 case ALL:
                     approximation = new Approximation(rightPoints);
                     setCoeff(approximation.getA(), approximation.getB());
-                    drawFunction(g, Color.blue, true);
+                    drawFunction(g, Color.blue, false);
                     drawFuncLabel(g, 0);
                     approximation = new Approximation(points);
                     setCoeff(approximation.getA(), approximation.getB());
