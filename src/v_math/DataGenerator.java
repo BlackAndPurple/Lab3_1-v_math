@@ -20,12 +20,12 @@ public class DataGenerator {
     public ArrayList<Point> getWrongPoints(){
 
         ArrayList<Point> points = getNPoints(5);
-        points.add(new Point(Math.PI, 3));
-        //points.add(new Point(Math.PI - 1, 10));
+        //points.add(new Point(Math.PI, 3));
+        points.add(new Point(Math.PI - 1, 2));
         return  points;
     }
 
-    public List<Point> getRightPoints(ArrayList<Point> points) {
+    public ArrayList<Point> getRightPoints(ArrayList<Point> points) {
         ArrayList<Point> rightPoints = (ArrayList)points.clone();
         double max_offset = 0;
         Point point_to_delete = null;

@@ -92,4 +92,21 @@ public class Approximation {
         b = matrix_local[1][2] / matrix_local[1][1];
         return b;
     }
+
+    /*public ArrayList<Point> getRightPoints(ArrayList<Point> points) {
+        ArrayList<Point> rightPoints = (ArrayList)points.clone();
+        double max_offset = 0;
+        Point point_to_delete = null;
+        for (Point point : rightPoints){
+            double offset = Math.pow(point.getY() - f(point.getX()), 2);
+            if (offset > max_offset){
+                max_offset = offset;
+                point_to_delete = point;
+            }
+        }
+        if (point_to_delete != null)
+            rightPoints.remove(point_to_delete);
+        return rightPoints;
+
+    }*/
 }

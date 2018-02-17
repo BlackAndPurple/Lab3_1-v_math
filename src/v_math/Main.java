@@ -7,8 +7,10 @@ import java.util.List;
 
 public class Main extends JFrame{
 
-    DrawPlot plot;
-    SwitchPointsSet pointsSet;
+    private DrawPlot plot;
+    private SwitchPointsSet pointsSet;
+    private SwitchFunctionToDisplay functionSwitcher;
+    private Controller controller;
 
     public Main()
     {
@@ -17,15 +19,23 @@ public class Main extends JFrame{
         Container c = getContentPane();
         c.setLayout(new BorderLayout()); // установка менеджера размещения
         DataGenerator data = new DataGenerator();
-        plot = new DrawPlot();
-        c.add(plot, BorderLayout.CENTER);
-        //ArrayList<Point> points = data.getNPoints(8);
-        //ArrayList<Point> points = data.getWrongPoints();
-        //plot.setPoints(points);
-        pointsSet = new SwitchPointsSet();
-        //c.add(pointsSet.getButtonPanel(), BorderLayout.LINE_START);
+        controller = new Controller();
+        plot = new DrawPlot(controller);
+        plot.repaint();
+        JPanel switchersPanel = new JPanel();
+        switchersPanel.setLayout(new BoxLayout(switchersPanel, BoxLayout.Y_AXIS));
+        pointsSet = new SwitchPointsSet(plot, controller);
+        functionSwitcher = new SwitchFunctionToDisplay(plot, controller); //fix it
+        switchersPanel.add(pointsSet.getButtonPanel());
+        switchersPanel.add(functionSwitcher.getButtonPanel());
+        //c.add(pointsSet.getButtonPanel(),BorderLayout.WEST);
+        c.add(switchersPanel,BorderLayout.WEST);
+       // plot.setPoints(pointsSet.getPoints());
 
-        setSize(1000,800); // задание размеров
+        //c.add(functionSwitcher.getButtonPanel(),BorderLayout.PAGE_END);
+        c.add(plot, BorderLayout.CENTER);
+
+        setSize(980,800); // задание размеров
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // задание параметров
         // главного окна при закрытии
         setVisible(true);
